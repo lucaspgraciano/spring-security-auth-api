@@ -24,7 +24,7 @@ jobs:
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build docker image
-        run: docker build -t lucasgraciano/spring-security-auth-api.
+        run: docker build -t lucasgraciano/spring-security-auth-api .
 
       - name: Push image docker
         run: docker push lucasgraciano/spring-security-auth-api
