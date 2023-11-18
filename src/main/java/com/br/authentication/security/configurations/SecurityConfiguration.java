@@ -3,9 +3,9 @@ package com.br.authentication.security.configurations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -14,13 +14,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfiguration {
-    public static final List<String> ENDPOINTS_WITH_AUTH_REQUIRED = List.of("/users/auth", "/users/admin");
+    public static final List<String> ENDPOINTS_WITH_AUTH_REQUIRED = List.of("/api/auth/admin", "/api/auth/user");
 
     @Autowired
     private UserAuthenticationFilter userAuthenticationFilter;
@@ -31,9 +31,10 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((req) -> req
-                        .requestMatchers("/users/login", "/users").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/users/admin").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/users/auth").hasRole("USER")
+                        .requestMatchers("/api/register").permitAll()
+                        .requestMatchers("/api/login").permitAll()
+                        .requestMatchers("/api/auth/admin").hasRole("ADMIN")
+                        .requestMatchers("/api/auth/user").hasRole("USER")
                         .anyRequest().permitAll())
                 .addFilterBefore(userAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

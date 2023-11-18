@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.br.authentication.security.entities.UserDetails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -13,15 +14,20 @@ import java.time.ZonedDateTime;
 
 @Service
 public class JwtTokenService {
-    private static final String SECRET_KEY = "4Z^XrroxR@dWxqf$mTTKwW$!@#qGr4P";
+    @Value("${auth.jwt.secretKey}")
+    private String secretKey;
 
-    private static final String ISSUER = "pizzurg-api";
+    @Value("${auth.jwt.issuer}")
+    private String issuer;
+
+    @Value("${auth.jwt.expiration}")
+    private Integer expiration;
 
     public String generateToken(UserDetails user) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+            Algorithm algorithm = Algorithm.HMAC256(this.secretKey);
             return JWT.create()
-                    .withIssuer(ISSUER)
+                    .withIssuer(this.issuer)
                     .withIssuedAt(creationDate())
                     .withExpiresAt(expirationDate())
                     .withSubject(user.getUsername())
@@ -33,9 +39,9 @@ public class JwtTokenService {
 
     public String getSubjectFromToken(String token) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
+            Algorithm algorithm = Algorithm.HMAC256(this.secretKey);
             return JWT.require(algorithm)
-                    .withIssuer(ISSUER)
+                    .withIssuer(this.issuer)
                     .build()
                     .verify(token)
                     .getSubject();
@@ -49,6 +55,6 @@ public class JwtTokenService {
     }
 
     private Instant expirationDate() {
-        return ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).plusHours(4).toInstant();
+        return ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toInstant().plusMillis(this.expiration);
     }
 }

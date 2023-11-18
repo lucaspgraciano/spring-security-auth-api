@@ -1,22 +1,18 @@
 spring:
   datasource:
-    url: "jdbc:h2:mem:authentication"
-    driverClassName: org.h2.Driver
-    username: "user"
-    password: "pass"
-  jpa:
-    properties:
-      hibernate:
-        dialect: "org.hibernate.dialect.H2Dialect"
-    hibernate:
-      ddl-auto: "update"
-  h2:
-    console:
-      enabled: false
+    url: jdbc:postgresql://${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
 
-  server:
-    port: 8000
-    error:
-      include-message: always
-    servlet:
-      contextPath: /api
+server:
+  port: 8000
+  error:
+    include-message: always
+  servlet:
+    contextPath: /api
+
+auth:
+  jwt:
+    secretKey: "4Z^XrroxR@dWxqf$mTTKwW$!@#qGr4P"
+    issuer: "pizzurg-api"
+    expiration: 86400000
