@@ -36,7 +36,7 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull lucasgraciano/spring-security-auth-api:latest
       - name: Remove docker container
-        run: docker rm -f deploy_ghactions
+        run: docker rm -f spring-security-auth-api
       - name: Run docker container
         run: docker run -d -p 8080:8080 
           -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} 
