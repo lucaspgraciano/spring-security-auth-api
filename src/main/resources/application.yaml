@@ -5,7 +5,6 @@ spring:
     password: ${DATABASE_PASSWORD}
 
 server:
-  port: 8000
   error:
     include-message: always
   servlet:
