@@ -3,6 +3,7 @@ package com.br.authentication.security.controllers;
 import com.br.authentication.security.dtos.CreateUserDTO;
 import com.br.authentication.security.dtos.LoginUserDTO;
 import com.br.authentication.security.dtos.RecoveryJWTTokenDTO;
+import com.br.authentication.security.dtos.ResetEmailDto;
 import com.br.authentication.security.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,5 +40,11 @@ public class UserController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> getAdminAuth() {
         return new ResponseEntity<>("Admin role authenticated", HttpStatus.OK);
+    }
+
+    @PostMapping("/request-reset-password")
+    public ResponseEntity<Void> requestResetPassword(@RequestBody ResetEmailDto dto) {
+        service.produceRequestResetPassword(dto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

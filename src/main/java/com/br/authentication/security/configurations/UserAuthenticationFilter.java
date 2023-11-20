@@ -1,8 +1,8 @@
 package com.br.authentication.security.configurations;
 
 import com.br.authentication.security.entities.User;
-import com.br.authentication.security.repositories.UserRepository;
 import com.br.authentication.security.entities.UserDetails;
+import com.br.authentication.security.repositories.UserRepository;
 import com.br.authentication.security.services.JwtTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

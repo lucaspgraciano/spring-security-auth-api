@@ -4,6 +4,15 @@ spring:
     username: ${DATABASE_USERNAME}
     password: ${DATABASE_PASSWORD}
 
+cloud:
+  aws:
+    region: "us-east-1"
+    credentials:
+      accessKeyId: ${AWS_ACCESS_KEY_ID}
+      secretKey: ${AWS_ACCESS_KEY_SECRET}
+    sqs:
+      name: "store-api"
+
 server:
   error:
     include-message: always
@@ -13,5 +22,5 @@ server:
 auth:
   jwt:
     secretKey: "4Z^XrroxR@dWxqf$mTTKwW$!@#qGr4P"
-    issuer: "pizzurg-api"
+    issuer: "store-api"
     expiration: 86400000
