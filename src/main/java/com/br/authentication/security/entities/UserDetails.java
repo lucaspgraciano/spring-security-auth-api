@@ -1,6 +1,5 @@
 package com.br.authentication.security.entities;
 
-import com.br.authentication.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;

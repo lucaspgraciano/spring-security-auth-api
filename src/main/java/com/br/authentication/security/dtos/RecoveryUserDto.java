@@ -1,4 +1,4 @@
-package com.br.authentication.dtos;
+package com.br.authentication.security.dtos;
 
 public record RecoveryUserDto(
         Long id,

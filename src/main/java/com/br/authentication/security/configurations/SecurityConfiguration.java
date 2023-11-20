@@ -20,7 +20,8 @@ import java.util.List;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfiguration {
-    public static final List<String> ENDPOINTS_WITH_AUTH_REQUIRED = List.of("/api/auth/admin", "/api/auth/user");
+    public static final List<String> ENDPOINTS_WITH_AUTH_REQUIRED = List.of(
+            "/api/auth/admin", "/api/auth/user", "/api/cashier");
 
     @Autowired
     private UserAuthenticationFilter userAuthenticationFilter;
@@ -35,6 +36,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/login").permitAll()
                         .requestMatchers("/api/auth/admin").hasRole("ADMIN")
                         .requestMatchers("/api/auth/user").hasRole("USER")
+                        .requestMatchers("/api/cashier").authenticated()
                         .anyRequest().permitAll())
                 .addFilterBefore(userAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

@@ -1,9 +1,9 @@
-package com.br.authentication.controllers;
+package com.br.authentication.security.controllers;
 
-import com.br.authentication.dtos.CreateUserDTO;
-import com.br.authentication.dtos.LoginUserDTO;
-import com.br.authentication.dtos.RecoveryJWTTokenDTO;
-import com.br.authentication.services.UserService;
+import com.br.authentication.security.dtos.CreateUserDTO;
+import com.br.authentication.security.dtos.LoginUserDTO;
+import com.br.authentication.security.dtos.RecoveryJWTTokenDTO;
+import com.br.authentication.security.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

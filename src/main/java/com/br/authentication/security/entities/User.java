@@ -1,13 +1,15 @@
-package com.br.authentication.entities;
+package com.br.authentication.security.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.flywaydb.core.internal.database.postgresql.PostgreSQLType;
+import org.hibernate.annotations.Type;
 
 @Table(name = "USERS", schema = "AUTHENTICATION")
-@Entity(name = "user")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -30,6 +32,6 @@ public class User {
     @Column
     private String password;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Role role;
 }

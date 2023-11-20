@@ -1,6 +1,6 @@
-package com.br.authentication.repositories;
+package com.br.authentication.security.repositories;
 
-import com.br.authentication.entities.User;
+import com.br.authentication.security.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
