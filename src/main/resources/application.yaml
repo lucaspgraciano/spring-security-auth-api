@@ -12,6 +12,10 @@ cloud:
       secretKey: ${AWS_ACCESS_KEY_SECRET}
     sqs:
       name: "store-api"
+    ses:
+      email: ${AWS_SES_EMAIL}
+    dynamodb:
+      endpoint: "https://dynamodb.us-east-1.amazonaws.com"
 
 server:
   error:
@@ -21,6 +25,6 @@ server:
 
 auth:
   jwt:
-    secretKey: "4Z^XrroxR@dWxqf$mTTKwW$!@#qGr4P"
-    issuer: "store-api"
+    secretKey: ${JWT_SECRET_KEY}
+    issuer: ${JWT_ISSUER}
     expiration: 86400000

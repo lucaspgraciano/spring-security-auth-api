@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 @EnableSqs
-public class AwsSqsConfiguration {
+public class AWSSQSConfiguration {
 
     @Value("${cloud.aws.credentials.accessKeyId:default}")
     private String accessKeyId;

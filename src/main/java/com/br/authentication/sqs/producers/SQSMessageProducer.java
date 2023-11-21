@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class SqsMessageProducer {
+public class SQSMessageProducer {
 
     @Value("${cloud.aws.sqs.name}")
     private String queueName;
 
     private final QueueMessagingTemplate queueMessagingTemplate;
 
-    public SqsMessageProducer(QueueMessagingTemplate queueMessagingTemplate) {
+    public SQSMessageProducer(QueueMessagingTemplate queueMessagingTemplate) {
         this.queueMessagingTemplate = queueMessagingTemplate;
     }
 
