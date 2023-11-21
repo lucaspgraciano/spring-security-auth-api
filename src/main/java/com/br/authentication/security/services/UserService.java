@@ -101,7 +101,6 @@ public class UserService {
                 .attempts(0)
                 .owner(email)
                 .createdAt(new Date())
-                .updatedAt(null)
                 .verified(Boolean.FALSE)
                 .build();
     }
