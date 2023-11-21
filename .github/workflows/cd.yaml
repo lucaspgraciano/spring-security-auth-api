@@ -42,4 +42,9 @@ jobs:
           -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} 
           -e DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD}}
           -e DATABASE_URL=${{secrets.DATABASE_URL}} 
+          -e AWS_ACCESS_KEY_ID=${{secrets.AWS_ACCESS_KEY_ID}}
+          -e AWS_ACCESS_KEY_SECRET=${{secrets.AWS_ACCESS_KEY_SECRET}}
+          -e AWS_SES_EMAIL=${{secrets.AWS_SES_EMAIL}}
+          -e JWT_SECRET_KEY=${{secrets.JWT_SECRET_KEY}}
+          -e JWT_ISSUER=${{secrets.JWT_ISSUER}} 
           --name spring-security-auth-api lucasgraciano/spring-security-auth-api
